@@ -9,11 +9,11 @@ s = Screen()  # создаю новый холст для черепашки
 s.title('Моя черепашка')  # название окна черепашки
 s.bgcolor('#000000')  # цвет фона черепашки
 
-t.pensize(4)  # размер линии рисования
-for line in range(12):
-    t.fd(100)
-    t.stamp()
-    t.bk(100)
-    t.rt(30)
+t.pensize(4)
+for circle in range(4):
+    t.circle(30)
+    t.up()
+    t.fd(45)
+    t.down()
 
 done()  # окно не будет закрываться сразу
