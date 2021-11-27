@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding = "UTF-8"?>
+<EmployeeData>
+    <employee id="34594">
+        <firstName>Heather</firstName>
+        <lastName>Banks</lastName>
+        <hireDate>1/19/1998</hireDate>
+        <deptCode>BB001</deptCode>
+        <salary>72000</salary>
+    </employee>
+    <employee id="34593">
+        <firstName>Tina</firstName>
+        <lastName>Young</lastName>
+        <hireDate>4/1/2010</hireDate>
+        <deptCode>BB001</deptCode>
+        <salary>65000</salary>
+    </emplovee>
+</EmployeeData>
