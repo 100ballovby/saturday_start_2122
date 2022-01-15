@@ -41,13 +41,25 @@ def draw_house(x, y, width, height, surface, color):
     lines(surface, color, False, make_house_frame(x, y, width, height), line_thickness)
 
 
+def make_house_window_frame(x, y, width, height):
+    points = []
 
+    points.append((x + 0.5 * width, y - 0.5 * height))
+    points.append((x + 0.9 * width, y - 0.2 * height))
+    # TODO: дорисовать точки окна
+    return points
+
+
+def draw_house_window(x, y, width, height, surface, color):
+    line_thickness = 3
+    lines(surface, color, False, make_house_window_frame(x, y, width, height), line_thickness)
 
 done = False  # окно не закрыто
 screen = pg.display.set_mode((640, 480))  # создаю окно с определенным размером
 clock = pg.time.Clock()  # счетчик кадров
 
 draw_house(150, 200, 100, 150, screen, COLORS['red'])
+draw_house_window(190, 230, 50, 50, screen, COLORS['dark_blue'])
 
 # обновление кадров (они могут сменяться)
 pg.display.update()
