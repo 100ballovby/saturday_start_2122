@@ -13,7 +13,7 @@ COLORS = {
 }
 
 
-def draw_house(x, y, width, height, surface, color):
+def make_house_frame(x, y, width, height):
     """
     Функция рисует коробку дома по заданным параметрам.
     :param x: положение по иксу
@@ -22,19 +22,32 @@ def draw_house(x, y, width, height, surface, color):
     :param height: высота коробки дома
     :param surface: поверхность, на которой рисуется дом
     :param color: цвет дома
-    :return: None
+    :return: список точек для рисования очертания дома
     """
-    points = [(x, y - ((2 / 3) * height)), (x, y),
-              (x + width, y), (x + width, y - ((2 / 3) * height)),
-              (x, y - ((2 / 3) * height)), (x + width / 2, y - height),
-              (x + width, y - ((2 / 3) * height))
-              ]
+    points = []  # начнем с пустого списка точек
+
+    points.append( (x, y - ((2 / 3) * height)) )  # верх этажа (левый верхний угол
+    points.append( (x, y) )  # нижний левый угол
+    points.append( (x + width, y) )  # нижний правый угол
+    points.append( (x + width, y - ((2 / 3) * height)) )  # правый верхний угол
+    points.append( (x, y - ((2 / 3) * height)) )  # верхняя часть первого этажа
+    points.append( (x + width / 2, y - height) )  # вершина крыши
+    points.append( (x + width, y - ((2 / 3) * height)) )  # верхняя правая точка (соединяю крышу с домом)
+    return points  # возвращаю список точек
+
+
+def draw_house(x, y, width, height, surface, color):
     line_thickness = 3
-    lines(surface, color, False, points, line_thickness)
+    lines(surface, color, False, make_house_frame(x, y, width, height), line_thickness)
+
+
+
 
 done = False  # окно не закрыто
 screen = pg.display.set_mode((640, 480))  # создаю окно с определенным размером
 clock = pg.time.Clock()  # счетчик кадров
+
+draw_house(150, 200, 100, 150, screen, COLORS['red'])
 
 # обновление кадров (они могут сменяться)
 pg.display.update()
