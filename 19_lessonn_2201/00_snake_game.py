@@ -1,5 +1,7 @@
 import pygame as pg
 from pygame.draw import rect
+from random import randrange
+import time
 
 BLUE = (120, 84, 240)
 RED = (240, 84, 84)
@@ -16,7 +18,6 @@ def show_message(msg, color, surface):
     surface.blit(text, [S_WIDTH / 2, S_HEIGHT / 2])
 
 
-
 done = False
 
 screen = pg.display.set_mode((S_WIDTH, S_HEIGHT))
@@ -27,6 +28,9 @@ x_change = 0  # то, насколько изменяются координат
 y_change = 0  # то, насколько изменяются координаты змеи
 x1 = 200  # начальные координаты змейки
 y1 = 200  # начальные координаты змейки
+
+food_x = randrange(0, S_WIDTH - 10)
+food_y = randrange(0, S_HEIGHT - 10)
 
 pg.display.update()
 while not done:
