@@ -13,12 +13,14 @@ SPEED = 5
 
 
 def show_message(msg, color, surface):
-    font_style = pg.font.SysFont(bold=True, size=30)  # стиль шрифта - жирный, размер 30
+    pg.font.init()  # инициализация шрифта
+    font_style = pg.font.SysFont(bold=True, size=10, name='calibri')  # стиль шрифта - жирный, размер 10
     text = font_style.render(msg, True, color)  # отобразить сообщение
     surface.blit(text, [S_WIDTH / 2, S_HEIGHT / 2])
 
 
 done = False
+game_over = False  # переменная, отвечающая за окончание игры, но не ее остановку
 
 screen = pg.display.set_mode((S_WIDTH, S_HEIGHT))
 pg.display.set_caption('Snake Game v.1')  # название окна
@@ -34,6 +36,12 @@ food_y = randrange(0, S_HEIGHT - 10)
 
 pg.display.update()
 while not done:
+
+    while game_over:  # если "проигрыш"
+        screen.fill(VIOLET)
+        show_message('Игра окончена! Нажмите C, чтобы сыграть еще раз', BLUE, screen)
+        pg.display.update()
+
     clock.tick(30)
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -51,6 +59,10 @@ while not done:
             elif event.key == pg.K_DOWN:  # если кнопка - стрелка_вниз, то
                 x_change = 0
                 y_change = SPEED  # идем вниз (увеличиваем у)
+            elif event.key == pg.K_c:  # продолжить игру
+                game_over = False
+            elif event.key == pg.K_ESCAPE:  # остановить игру
+                game_over = True
 
     x1 += x_change  # заставляю змею двигаться по иксу
     y1 += y_change  # заставляю змею двигаться по игреку
