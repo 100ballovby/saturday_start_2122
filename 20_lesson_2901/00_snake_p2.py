@@ -7,8 +7,8 @@ BLUE = (120, 84, 240)
 RED = (240, 84, 84)
 GREEN = (74, 224, 74)
 VIOLET = (248, 240, 255)
-S_WIDTH = 640
-S_HEIGHT = 480
+S_WIDTH = 400
+S_HEIGHT = 400
 SPEED = 5
 SNAKE_BLOCK = 10  # фактический размер квадратика змеи
 
@@ -24,6 +24,17 @@ pg.display.set_caption('Snake Game v.1.1')  # название окна
 clock = pg.time.Clock()
 
 
+def our_snake(s_block, s_list):
+    """
+    Увеличивает размер змеи путем добавления координат в список нового блока змеи, когда она съест еду
+    :param s_block: размер змеи
+    :param s_list:  список блоков змеи
+    :return: None
+    """
+    for x in s_list:  # для каждой пары координат в списке
+        rect(screen, GREEN, [x[0], x[1], s_block, s_block])
+
+
 def game_loop():  # главный игровой цикл
     x_change = 0  # то, насколько изменяются координаты змеи
     y_change = 0  # то, насколько изменяются координаты змеи
@@ -35,6 +46,9 @@ def game_loop():  # главный игровой цикл
 
     done = False
     game_over = False  # переменная, отвечающая за окончание игры, но не ее остановку
+
+    snake_list = []  # список блоков змеи
+    snake_length = 1  # размер змеи
 
     pg.display.update()
     while not done:
@@ -77,12 +91,28 @@ def game_loop():  # главный игровой цикл
         y1 += y_change  # заставляю змею двигаться по игреку
 
         screen.fill(VIOLET)
-        rect(screen, GREEN, [x1, y1, SNAKE_BLOCK, SNAKE_BLOCK])  # рисую змею
+        # rect(screen, GREEN, [x1, y1, SNAKE_BLOCK, SNAKE_BLOCK])  # рисую змею
+
+        snake_head = []  # храню голову змеи
+        snake_head.append(x1)  # добавляю координаты головы в список
+        snake_head.append(y1)  # добавляю координаты головы в список
+        snake_list.append(snake_head)  # список координат добавляю в список объектов тела змеи
+        if len(snake_list) > snake_length:  # если список станет длиннее, чем длина змеи
+            snake_list.pop(0)  # удаляю первый элемент списка
+
+        for block in snake_list[:-1]:
+            if block == snake_head:  # если, когда змея идет вправо, пойти влево, игра закончится
+                game_over = True
+
+        our_snake(SNAKE_BLOCK, snake_list)  # перебираю блоки змеи и отрисовываю их
+
         rect(screen, RED, [food_x, food_y, SNAKE_BLOCK, SNAKE_BLOCK])  # рисую еду
         pg.display.update()
 
-        if x1 == food_x and y1 == food_y:
-            print('Ням-ням!')
+        if x1 == food_x and y1 == food_y:  # если координаты змеи равны координатам еды
+            food_x = round(randrange(0, S_WIDTH - SNAKE_BLOCK) / 10) * 10  # переместить еду на новую позицию
+            food_y = round(randrange(0, S_HEIGHT - SNAKE_BLOCK) / 10) * 10  # переместить еду на новую позицию
+            snake_length += 1
 
         # TODO: сделать змею другого цвета, если коснется объекта
 
