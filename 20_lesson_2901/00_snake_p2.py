@@ -7,15 +7,29 @@ BLUE = (120, 84, 240)
 RED = (240, 84, 84)
 GREEN = (74, 224, 74)
 VIOLET = (248, 240, 255)
+ORANGE = (252, 186, 3)
 S_WIDTH = 400
 S_HEIGHT = 400
 SPEED = 5
 SNAKE_BLOCK = 10  # фактический размер квадратика змеи
 
+pg.font.init()
+font_style = pg.font.SysFont(bold=True, size=10, name='calibri')  # стиль шрифта - жирный, размер 10
+score_font = pg.font.SysFont('arial', 20)
+
+
+def show_score(score):
+    """
+    Отображает очки на экране игры
+    :param score: количество очков
+    :return: None
+    """
+    value = score_font.render(f'Your score: {score}', True, ORANGE)
+    screen.blit(value, [0, 0])
+
 
 def show_message(msg, color, surface):
     pg.font.init()  # инициализация шрифта
-    font_style = pg.font.SysFont(bold=True, size=10, name='calibri')  # стиль шрифта - жирный, размер 10
     text = font_style.render(msg, True, color)  # отобразить сообщение
     surface.blit(text, [S_WIDTH / 2, S_HEIGHT / 2])
 
@@ -105,6 +119,7 @@ def game_loop():  # главный игровой цикл
                 game_over = True
 
         our_snake(SNAKE_BLOCK, snake_list)  # перебираю блоки змеи и отрисовываю их
+        show_score(snake_length - 1)
 
         rect(screen, RED, [food_x, food_y, SNAKE_BLOCK, SNAKE_BLOCK])  # рисую еду
         pg.display.update()
