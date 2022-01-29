@@ -77,8 +77,12 @@ def game_loop():  # главный игровой цикл
         y1 += y_change  # заставляю змею двигаться по игреку
 
         screen.fill(VIOLET)
-        rect(screen, GREEN, [x1, y1, SNAKE_BLOCK, SNAKE_BLOCK])
+        rect(screen, GREEN, [x1, y1, SNAKE_BLOCK, SNAKE_BLOCK])  # рисую змею
+        rect(screen, RED, [food_x, food_y, SNAKE_BLOCK, SNAKE_BLOCK])  # рисую еду
         pg.display.update()
+
+        if x1 == food_x and y1 == food_y:
+            print('Ням-ням!')
 
         # TODO: сделать змею другого цвета, если коснется объекта
 
