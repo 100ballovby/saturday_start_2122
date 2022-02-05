@@ -19,7 +19,6 @@ def ball_move(speed_x, speed_y, ball):
         speed_x *= -1  # направить его в противоположную сторону
     elif ball.colliderect(player) or ball.colliderect(opponent):
         speed_x *= -1
-
     # TODO: починить движение шарика
 
 W = 1280
