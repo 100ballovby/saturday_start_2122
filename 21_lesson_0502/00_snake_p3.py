@@ -8,10 +8,10 @@ RED = (240, 84, 84)
 GREEN = (74, 224, 74)
 VIOLET = (248, 240, 255)
 ORANGE = (252, 186, 3)
-S_WIDTH = 400
-S_HEIGHT = 400
-SPEED = 5
-SNAKE_BLOCK = 10  # фактический размер квадратика змеи
+S_WIDTH = 1280
+S_HEIGHT = 960
+SPEED = 15
+SNAKE_BLOCK = 30  # фактический размер квадратика змеи
 
 pg.font.init()
 font_style = pg.font.SysFont(bold=True, size=10, name='calibri')  # стиль шрифта - жирный, размер 10
@@ -74,6 +74,9 @@ def game_loop():  # главный игровой цикл
             pg.display.update()
 
             for event in pg.event.get():
+                if event.type == pg.QUIT:  # если нажать на крестик в окне
+                    game_over = False  # отключаю паузу
+                    done = True  # закрываю игровое окно
                 if event.type == pg.KEYDOWN:
                     if event.key == pg.K_q:
                         game_over = False  # отключаем цикл "паузы"
@@ -119,13 +122,13 @@ def game_loop():  # главный игровой цикл
             if block == snake_head:  # если, когда змея идет вправо, пойти влево, игра закончится
                 game_over = True
 
-        our_snake(SNAKE_BLOCK, snake_list)  # перебираю блоки змеи и отрисовываю их
+        snake = our_snake(SNAKE_BLOCK, snake_list)  # перебираю блоки змеи и отрисовываю их
         show_score(snake_length - 1)
 
-        rect(screen, RED, [food_x, food_y, SNAKE_BLOCK, SNAKE_BLOCK])  # рисую еду
+        food = rect(screen, RED, [food_x, food_y, SNAKE_BLOCK, SNAKE_BLOCK])  # рисую еду
         pg.display.update()
 
-        if x1 == food_x and y1 == food_y:  # если координаты змеи равны координатам еды
+        if snake.colliderect(food):  # если змея касается еды
             food_x = round(randrange(0, S_WIDTH - SNAKE_BLOCK) / 10) * 10  # переместить еду на новую позицию
             food_y = round(randrange(0, S_HEIGHT - SNAKE_BLOCK) / 10) * 10  # переместить еду на новую позицию
             snake_length += 1
