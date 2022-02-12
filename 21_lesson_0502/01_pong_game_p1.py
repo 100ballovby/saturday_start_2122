@@ -1,5 +1,14 @@
 import pygame as pg
 from pygame.draw import rect, circle, polygon, ellipse, aaline
+from random import choice
+
+
+def ball_start():
+    global speed_x, speed_y
+
+    ball.center = (W // 2, H // 2)  # ставлю мяч посередине
+    speed_x *= choice([-1, 1])
+    speed_y *= choice([-1, 1])
 
 
 def ball_move():
@@ -17,7 +26,7 @@ def ball_move():
     if ball.top <= 0 or ball.bottom >= H:  # если ударился об верхний или нижний край экрана
         speed_y *= -1  # направить его в противоположную сторону
     elif ball.left <= 0 or ball.right >= W:  # если ударился об правый или левый край экрана
-        speed_x *= -1  # направить его в противоположную сторону
+        ball_start()  # рестартнуть мячик
     elif ball.colliderect(player) or ball.colliderect(opponent):
         speed_x *= -1
 
@@ -68,10 +77,10 @@ ball = pg.Rect(W // 2 - 15, H // 2 - 15, 30, 30)  # (x, y, ширина_квад
 player = pg.Rect(W - 20, H // 2, 10, 140)  # (x, y, ширина_квадрата, высота_квадрата)
 opponent = pg.Rect(10, H // 2, 10, 140)  # (x, y, ширина_квадрата, высота_квадрата)
 
-speed_x = 7
-speed_y = 7
+speed_x = 7 * choice([-1, 1])
+speed_y = 7 * choice([-1, 1])
 p_speed = 0
-o_speed = 5
+o_speed = 7
 
 finished = False
 while not finished:
