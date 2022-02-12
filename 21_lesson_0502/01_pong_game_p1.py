@@ -29,6 +29,7 @@ def ball_move():
     elif ball.left <= 0:  # если ударился об левый край экрана
         ball_start()  # рестартнуть мячик
         player_score += 1  # Засчитать очки игроку
+
     elif ball.right >= W:  # если ударился об правый край экрана
         ball_start()  # рестартнуть мячик
         opponent_score += 1  # засчитать очки оппоненту
