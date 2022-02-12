@@ -19,8 +19,12 @@ def ball_start():
         num_1 = my_font.render('1', False, MAGENTA)
         screen.blit(num_1, [W / 2 - 20, H / 2 + 20])
 
-    speed_x *= choice([-1, 1])
-    speed_y *= choice([-1, 1])
+    if cur_time - score_time < 2100:  # пока не прошло 3 секунды
+        speed_x, speed_y = 0, 0  # мячик стоит на месте
+    else:  # иначе
+        speed_x = 7 * choice([-1, 1])  # направляем мячик в случайную позицию
+        speed_y = 7 * choice([-1, 1])  # направляем мячик в случайную позицию
+        score_time = None  # отключаем score_time
 
 
 def ball_move():
@@ -31,7 +35,7 @@ def ball_move():
     :param ball: игровой объект-мячик
     :return: None
     """
-    global speed_x, speed_y, player_score, opponent_score
+    global speed_x, speed_y, player_score, opponent_score, score_time
     ball.x += speed_x
     ball.y += speed_y
 
@@ -101,6 +105,8 @@ speed_x = 8 * choice([-1, 1])
 speed_y = 8 * choice([-1, 1])
 p_speed = 0
 o_speed = 5
+ball_moving = False
+score_time = True
 
 # score text
 player_score = 0
