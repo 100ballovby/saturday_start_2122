@@ -4,9 +4,21 @@ from random import choice
 
 
 def ball_start():
-    global speed_x, speed_y
+    global speed_x, speed_y, ball_moving, score_time
 
     ball.center = (W // 2, H // 2)  # ставлю мяч посередине
+    cur_time = pg.time.get_ticks()  # сохраняю текущее время
+
+    if cur_time - score_time < 700:
+        num_3 = my_font.render('3', False, MAGENTA)
+        screen.blit(num_3, [W / 2 - 20, H / 2 + 20])
+    if 700 < cur_time - score_time < 1400:
+        num_2 = my_font.render('2', False, MAGENTA)
+        screen.blit(num_2, [W / 2 - 20, H / 2 + 20])
+    if 1400 < cur_time - score_time < 2100:
+        num_1 = my_font.render('1', False, MAGENTA)
+        screen.blit(num_1, [W / 2 - 20, H / 2 + 20])
+
     speed_x *= choice([-1, 1])
     speed_y *= choice([-1, 1])
 
