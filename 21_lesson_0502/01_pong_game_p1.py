@@ -21,6 +21,20 @@ def ball_move():
     elif ball.colliderect(player) or ball.colliderect(opponent):
         speed_x *= -1
 
+
+def player_animation(p_speed):
+    """
+    Функция будет двигать платформу игрока_1 по вертикали
+    :param p_speed: скорость перемещения
+    :return: None
+    """
+    player.y += p_speed
+
+    if player.top <= 0:  # если ушел за верхнюю границу
+        player.top = 0  # остановить его наверху
+    elif player.bottom >= H:  # если ушел за нижнюю границу
+        player.bottom = H  # остановить его внизу
+
 W = 1280
 H = 960
 screen = pg.display.set_mode((W, H))
@@ -37,6 +51,7 @@ opponent = pg.Rect(10, H // 2, 10, 140)  # (x, y, ширина_квадрата,
 
 speed_x = 7
 speed_y = 7
+p_speed = 0
 
 finished = False
 while not finished:
@@ -44,6 +59,16 @@ while not finished:
     for event in pg.event.get():
         if event.type == pg.QUIT:
             finished = True
+        if event.type == pg.KEYDOWN:
+            if event.key == pg.K_UP:
+                p_speed -= 7
+            if event.key == pg.K_DOWN:
+                p_speed += 7
+        if event.type == pg.KEYUP:
+            if event.key == pg.K_UP:
+                p_speed += 7
+            if event.key == pg.K_DOWN:
+                p_speed -= 7
 
     # отображение игровых объектов
     screen.fill(L_GREY)  # заливаю экран серым цветом
