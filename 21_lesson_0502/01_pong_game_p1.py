@@ -19,14 +19,20 @@ def ball_move():
     :param ball: игровой объект-мячик
     :return: None
     """
-    global speed_x, speed_y
+    global speed_x, speed_y, player_score, opponent_score
     ball.x += speed_x
     ball.y += speed_y
 
     if ball.top <= 0 or ball.bottom >= H:  # если ударился об верхний или нижний край экрана
         speed_y *= -1  # направить его в противоположную сторону
-    elif ball.left <= 0 or ball.right >= W:  # если ударился об правый или левый край экрана
+
+    elif ball.left <= 0:  # если ударился об левый край экрана
         ball_start()  # рестартнуть мячик
+        player_score += 1  # Засчитать очки игроку
+    elif ball.right >= W:  # если ударился об правый край экрана
+        ball_start()  # рестартнуть мячик
+        opponent_score += 1  # засчитать очки оппоненту
+
     elif ball.colliderect(player) or ball.colliderect(opponent):
         speed_x *= -1
 
@@ -77,10 +83,17 @@ ball = pg.Rect(W // 2 - 15, H // 2 - 15, 30, 30)  # (x, y, ширина_квад
 player = pg.Rect(W - 20, H // 2, 10, 140)  # (x, y, ширина_квадрата, высота_квадрата)
 opponent = pg.Rect(10, H // 2, 10, 140)  # (x, y, ширина_квадрата, высота_квадрата)
 
-speed_x = 7 * choice([-1, 1])
-speed_y = 7 * choice([-1, 1])
+# game variables
+speed_x = 8 * choice([-1, 1])
+speed_y = 8 * choice([-1, 1])
 p_speed = 0
-o_speed = 7
+o_speed = 5
+
+# score text
+player_score = 0
+opponent_score = 0
+pg.font.init()  # чтобы шрифты работали
+my_font = pg.font.SysFont('comicsans', 64)
 
 finished = False
 while not finished:
@@ -105,6 +118,12 @@ while not finished:
     rect(screen, MAGENTA, opponent)  # рисую цветной квадрат на области opponent
     ellipse(screen, MAGENTA, ball)  # рисую цветной эллипс на области ball
     aaline(screen, MAGENTA, [W // 2, 0], [W // 2, H])
+
+    player_score_text = my_font.render(f'{player_score}', True, MAGENTA)
+    screen.blit(player_score_text, [660, 270])
+
+    opponent_score_text = my_font.render(f'{opponent_score}', True, MAGENTA)
+    screen.blit(opponent_score_text, [580, 270])
 
     pg.display.update()
 
