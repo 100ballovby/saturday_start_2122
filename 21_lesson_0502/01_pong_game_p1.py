@@ -2,7 +2,7 @@ import pygame as pg
 from pygame.draw import rect, circle, polygon, ellipse, aaline
 
 
-def ball_move(speed_x, speed_y, ball):
+def ball_move():
     """
     Логика передвижения мячика
     :param speed_x: скорость перемещения по горизонтали
@@ -10,6 +10,7 @@ def ball_move(speed_x, speed_y, ball):
     :param ball: игровой объект-мячик
     :return: None
     """
+    global speed_x, speed_y
     ball.x += speed_x
     ball.y += speed_y
 
@@ -19,7 +20,6 @@ def ball_move(speed_x, speed_y, ball):
         speed_x *= -1  # направить его в противоположную сторону
     elif ball.colliderect(player) or ball.colliderect(opponent):
         speed_x *= -1
-    # TODO: починить движение шарика
 
 W = 1280
 H = 960
@@ -35,6 +35,8 @@ ball = pg.Rect(W // 2 - 15, H // 2 - 15, 30, 30)  # (x, y, ширина_квад
 player = pg.Rect(W - 20, H // 2, 10, 140)  # (x, y, ширина_квадрата, высота_квадрата)
 opponent = pg.Rect(10, H // 2, 10, 140)  # (x, y, ширина_квадрата, высота_квадрата)
 
+speed_x = 7
+speed_y = 7
 
 finished = False
 while not finished:
@@ -53,4 +55,4 @@ while not finished:
     pg.display.update()
 
     # Логика перемещения шарика
-    ball_move(0, 5, ball)
+    ball_move()
