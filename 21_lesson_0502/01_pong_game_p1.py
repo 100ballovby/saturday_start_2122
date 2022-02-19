@@ -110,11 +110,10 @@ L_GREY = (230, 230, 230)  # цвет фона
 MAGENTA = (255, 110, 94)  # цвет персонажей
 
 # game objects
-ball_img = pg.image.load('ball.png').convert()  # загружаю картинку
-img_rect = ball_img.get_rect()  # настраиваю коллизию у изображения
-img_rect.center(W // 2, H // 2)  # выставляю изображение по центру
+ball_img = pg.image.load('ball.png').convert_alpha()  # загружаю картинку
+ball = ball_img.get_rect()  # настраиваю коллизию у изображения
+ball.center = W // 2, H // 2  # выставляю изображение по центру
 
-ball = pg.Rect(W // 2 - 15, H // 2 - 15, 30, 30)  # (x, y, ширина_квадрата, высота_квадрата)
 player = pg.Rect(W - 20, H // 2, 10, 140)  # (x, y, ширина_квадрата, высота_квадрата)
 opponent = pg.Rect(10, H // 2, 10, 140)  # (x, y, ширина_квадрата, высота_квадрата)
 
@@ -157,7 +156,7 @@ while not finished:
     screen.fill(L_GREY)  # заливаю экран серым цветом
     rect(screen, MAGENTA, player)  # рисую цветной квадрат на области player
     rect(screen, MAGENTA, opponent)  # рисую цветной квадрат на области opponent
-    ellipse(screen, MAGENTA, ball)  # рисую цветной эллипс на области ball
+    screen.blit(ball_img, ball)
     aaline(screen, MAGENTA, [W // 2, 0], [W // 2, H])
 
     player_score_text = my_font.render(f'{player_score}', True, MAGENTA)
