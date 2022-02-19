@@ -43,15 +43,24 @@ def ball_move():
         speed_y *= -1  # направить его в противоположную сторону
 
     elif ball.left <= 0:  # если ударился об левый край экрана
-        ball_start()  # рестартнуть мячик
+        score_time = pg.time.get_ticks()
         player_score += 1  # Засчитать очки игроку
 
     elif ball.right >= W:  # если ударился об правый край экрана
-        ball_start()  # рестартнуть мячик
+        score_time = pg.time.get_ticks()
         opponent_score += 1  # засчитать очки оппоненту
 
-    elif ball.colliderect(player) or ball.colliderect(opponent):
-        speed_x *= -1
+    if ball.colliderect(player) and speed_x > 0:
+        if abs(ball.right - player.left) < 10:
+            speed_x *= - 1
+        elif abs(ball.bottom - player.top) < 10 or abs(ball.top - player.bottom) < 10:
+            speed_y *= -1
+
+    if ball.colliderect(opponent):
+        if abs(ball.left - opponent.right) < 10 or abs(ball.right - player.left) < 10:
+            speed_x *= -1
+        else:
+            speed_y *= -1
 
 
 def player_animation(p_speed):
