@@ -41,26 +41,31 @@ def ball_move():
 
     if ball.top <= 0 or ball.bottom >= H:  # если ударился об верхний или нижний край экрана
         speed_y *= -1  # направить его в противоположную сторону
+        pg.mixer.Sound.play(pong_sound)
 
     elif ball.left <= 0:  # если ударился об левый край экрана
         score_time = pg.time.get_ticks()
         player_score += 1  # Засчитать очки игроку
+        pg.mixer.Sound.play(score_sound)
 
     elif ball.right >= W:  # если ударился об правый край экрана
         score_time = pg.time.get_ticks()
         opponent_score += 1  # засчитать очки оппоненту
+        pg.mixer.Sound.play(score_sound)
 
     if ball.colliderect(player) and speed_x > 0:
         if abs(ball.right - player.left) < 10:
             speed_x *= - 1
         elif abs(ball.bottom - player.top) < 10 or abs(ball.top - player.bottom) < 10:
             speed_y *= -1
+        pg.mixer.Sound.play(pong_sound)
 
     if ball.colliderect(opponent):
         if abs(ball.left - opponent.right) < 10 or abs(ball.right - player.left) < 10:
             speed_x *= -1
         else:
             speed_y *= -1
+        pg.mixer.Sound.play(pong_sound)
 
 
 def player_animation(p_speed):
@@ -105,6 +110,10 @@ L_GREY = (230, 230, 230)  # цвет фона
 MAGENTA = (255, 110, 94)  # цвет персонажей
 
 # game objects
+ball_img = pg.image.load('ball.png').convert()  # загружаю картинку
+img_rect = ball_img.get_rect()  # настраиваю коллизию у изображения
+img_rect.center(W // 2, H // 2)  # выставляю изображение по центру
+
 ball = pg.Rect(W // 2 - 15, H // 2 - 15, 30, 30)  # (x, y, ширина_квадрата, высота_квадрата)
 player = pg.Rect(W - 20, H // 2, 10, 140)  # (x, y, ширина_квадрата, высота_квадрата)
 opponent = pg.Rect(10, H // 2, 10, 140)  # (x, y, ширина_квадрата, высота_квадрата)
@@ -122,6 +131,10 @@ player_score = 0
 opponent_score = 0
 pg.font.init()  # чтобы шрифты работали
 my_font = pg.font.SysFont('comicsans', 64)
+
+pg.mixer.init()
+pong_sound = pg.mixer.Sound('cart_pong.wav')
+score_sound = pg.mixer.Sound('Score.wav')
 
 finished = False
 while not finished:
