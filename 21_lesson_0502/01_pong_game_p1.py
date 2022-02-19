@@ -153,6 +153,9 @@ while not finished:
     opponent_score_text = my_font.render(f'{opponent_score}', True, MAGENTA)
     screen.blit(opponent_score_text, [580, 270])
 
+    if score_time:  # если время начинает считаться
+        ball_start()  # вернуть мяч в центр поля
+
     pg.display.update()
 
     # Логика перемещения шарика
