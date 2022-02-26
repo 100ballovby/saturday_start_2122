@@ -27,7 +27,7 @@ def show_text(text, x, y):
     pg.font.init()
     font = pg.font.SysFont('comicsans', 32)  # настройки шрифта
     msg = font.render(text, True, BLACK)
-    screen.blit(msg, x, y)
+    screen.blit(msg, [x, y])
 
 finished = False
 game_over = False
@@ -41,6 +41,7 @@ while not finished:
     platform = rect(screen, BLACK, [pl_x, pl_y, 200, 50])
     ball = circle(screen, RED, [cir_x, cir_y], rad)
 
+    show_text(f'Score: {score}', 0, 0)
     pg.display.update()
 
     # Platform moving
@@ -61,6 +62,8 @@ while not finished:
     if cir_y >= H:
         cir_y = 0 - rad
         cir_x = randint(0 + rad, W - rad)
+        score -= 1
     if platform.colliderect(ball):
         cir_y = 0 - rad
         cir_x = randint(0 + rad, W - rad)
+        score += 1
