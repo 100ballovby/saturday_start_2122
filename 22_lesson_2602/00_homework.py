@@ -39,6 +39,7 @@ while not finished:
 
     screen.fill(WHITE)
     platform = rect(screen, BLACK, [pl_x, pl_y, 200, 50])
+    ball = circle(screen, RED, [cir_x, cir_y], rad)
 
     pg.display.update()
 
@@ -54,3 +55,12 @@ while not finished:
         pl_x = W - 205
     if platform.left <= 0:
         pl_x = 5
+
+    # Ball moving
+    cir_y += speed
+    if cir_y >= H:
+        cir_y = 0 - rad
+        cir_x = randint(0 + rad, W - rad)
+    if platform.colliderect(ball):
+        cir_y = 0 - rad
+        cir_x = randint(0 + rad, W - rad)
