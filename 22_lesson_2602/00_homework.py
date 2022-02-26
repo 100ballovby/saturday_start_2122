@@ -32,6 +32,19 @@ def show_text(text, x, y):
 finished = False
 game_over = False
 while not finished:
+
+    while game_over:
+        screen.fill(WHITE)
+        show_text('Press C to continue or ESC to exit', 200, 360)
+        pg.display.update()
+        for event in pg.event.get():
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_c:
+                    game_over = False
+                    score = 3
+                if event.key == pg.K_ESCAPE:
+                    pg.quit()
+
     clock.tick(30)
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -67,3 +80,7 @@ while not finished:
         cir_y = 0 - rad
         cir_x = randint(0 + rad, W - rad)
         score += 1
+
+    # Game over logic
+    if score == 0:
+        game_over = True
