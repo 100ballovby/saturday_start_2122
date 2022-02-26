@@ -84,3 +84,7 @@ while not finished:
     # Game over logic
     if score == 0:
         game_over = True
+
+    if score > 0 and score % 10 == 0:  # если количество очков больше 0 и кратно 10
+        score += 1
+        speed += 4
