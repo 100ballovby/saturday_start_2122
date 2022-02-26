@@ -30,10 +30,21 @@ def show_text(text, x, y):
     screen.blit(msg, x, y)
 
 finished = False
+game_over = False
 while not finished:
     clock.tick(30)
     for event in pg.event.get():
         if event.type == pg.QUIT:
             finished = True
 
+    screen.fill(WHITE)
+    platform = rect(screen, BLACK, [pl_x, pl_y, 200, 50])
+
     pg.display.update()
+
+    # Platform moving
+    keys = pg.key.get_pressed()
+    if keys[pg.K_LEFT]:
+        pl_x -= speed
+    if keys[pg.K_RIGHT]:
+        pl_x += speed
