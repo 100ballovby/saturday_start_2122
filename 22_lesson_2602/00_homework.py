@@ -48,3 +48,9 @@ while not finished:
         pl_x -= speed
     if keys[pg.K_RIGHT]:
         pl_x += speed
+
+    # Walls collision
+    if platform.right >= W:
+        pl_x = W - 205
+    if platform.left <= 0:
+        pl_x = 5
