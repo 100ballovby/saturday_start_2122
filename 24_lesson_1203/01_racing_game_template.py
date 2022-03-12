@@ -26,8 +26,12 @@ border_left = pg.Rect(140, 0, 30, H)
 border_right = pg.Rect(470, 0, 30, H)
 
 
-def moving(obj, speed):
+def moving(obj, speed, l_side, r_side):
     obj.x += speed
+    if obj.right >= r_side.left:  # если машина коснулась правой обочины
+        obj.right = r_side.left - 10
+    elif obj.left <= l_side.right:  # если машина коснулась левой обочины
+        obj.left = l_side.right + 10
 
 
 car_speed = 0  # начальная скорость машины
@@ -68,4 +72,4 @@ while not finished:
     pg.display.update()
 
     # Логика игры
-    moving(img_rect, car_speed)
+    moving(img_rect, car_speed, border_left, border_right)
