@@ -19,11 +19,13 @@ WHITE = (255, 255, 255)
 GRASS = (35, 145, 50)
 SAND = (255, 245, 181)
 GRAY = (61, 61, 61)
+RED = (209, 4, 66)
 
-background = pg.Rect(0, 0, W, H)
-road = pg.Rect(170, 0, 300, H)
-border_left = pg.Rect(140, 0, 30, H)
-border_right = pg.Rect(470, 0, 30, H)
+background = pg.Rect(0, 0, W, H)  # фон
+road = pg.Rect(170, 0, 300, H)  # дорога
+border_left = pg.Rect(140, 0, 30, H)  # левая обочина
+border_right = pg.Rect(470, 0, 30, H)  # правая обочина
+paddle1 = pg.Rect(170, 30, 100, 20)  # препятствие
 
 
 def moving(obj, speed, l_side, r_side):
@@ -68,8 +70,13 @@ while not finished:
     rect(screen, SAND, border_left)  # левая обочина
     rect(screen, SAND, border_right)  # правая обочина
 
+    rect(screen, RED, paddle1)  # препятствие
+
     screen.blit(img_copy, img_rect_copy)
     pg.display.update()
 
     # Логика игры
     moving(img_rect, car_speed, border_left, border_right)
+    paddle1.y += 10
+    if paddle1.y >= H:
+        paddle1.y = 0
