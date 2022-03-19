@@ -69,6 +69,7 @@ while not finished:
     rect(screen, GRAY, road)  # дорога
     rect(screen, SAND, border_left)  # левая обочина
     rect(screen, SAND, border_right)  # правая обочина
+    rect(screen, WHITE, [W // 2, 0, 5, H])  # полоса разметки
 
     rect(screen, RED, paddle1)  # препятствие
 
