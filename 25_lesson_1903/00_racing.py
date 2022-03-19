@@ -7,10 +7,25 @@ H = 900
 screen = pg.display.set_mode((W, H))
 clock = pg.time.Clock()
 
+# Car
 img = pg.image.load('car.png').convert_alpha()
 img_rect = img.get_rect()
 img_copy = img
 img_rect_copy = img_rect
+
+# Tree
+tree1 = pg.image.load('tree-3.png').convert_alpha()
+tree1_rect = tree1.get_rect()
+tree1 = pg.transform.scale(tree1, [W * 0.1, H * 0.2])
+
+tree2 = pg.image.load('tree-3.png').convert_alpha()
+tree2_rect = tree2.get_rect()
+tree2 = pg.transform.scale(tree2, [W * 0.1, H * 0.2])
+
+tree1_rect.x = 10
+tree2_rect.x = W - 90
+tree1_rect.y = -200
+tree2_rect.y = -500
 
 center = W // 2, H * 0.8  # координаты центра картинки
 img_rect.center = center  # центирую картинку на экране игры
@@ -76,6 +91,8 @@ while not finished:
     rect(screen, RED, paddle2)  # препятствие №2
 
     screen.blit(img_copy, img_rect_copy)
+    screen.blit(tree1, tree1_rect)
+    screen.blit(tree2, tree2_rect)
     pg.display.update()
 
     # Логика игры
@@ -102,3 +119,10 @@ while not finished:
         else:
             paddle2.right = road.right
         paddle2.y = 0
+
+    tree1_rect.y += 10
+    tree2_rect.y += 10
+    if tree1_rect.y >= H:
+        tree1_rect.y = -200
+    elif tree2_rect.y >= H:
+        tree2_rect.y = -500
