@@ -7,7 +7,7 @@ with open('salaries.json') as obj:
     print(type(data))  # словарь
     head = ['№', 'Год',  'з/п в руб.', 'Курс $', 'з/п в $']  # будущие заголовки таблицы
     number = 1  # счетчик строк в таблице
-    with open('salaries.csv', 'w') as csv_file:
+    with open('salaries.csv', 'w', newline='') as csv_file:
         writer = csv.writer(csv_file)  # объект, который записывает информацию в файл csv
         writer.writerow(head)  # записываю первую строчку - заголовки таблицы
 
