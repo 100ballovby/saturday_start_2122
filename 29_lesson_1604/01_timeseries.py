@@ -4,7 +4,7 @@ import json
 base_currency = 'USD'
 symbols = 'NG'  # XAU - золото, SUGAR - сахар, COTTON - хлопок, NG - газ
 endpoint = 'timeseries'
-key = ''
+key = ''   # вставьте ваш ключ к API
 start = '2021-04-15'
 end = '2022-04-15'
 url = f'https://commodities-api.com/api/{endpoint}?access_key={key}&start_date={start}&end_date={end}&symbols={symbols}'
