@@ -34,6 +34,7 @@ def convert():
     to_currency = var2.get()
     rate = get_rates(from_currency[:3], to_currency[:3])
     calculate = round(amount * float(rate), 2)
+    amountField2.delete(0, END)
     amountField2.insert(0, str(calculate))
 
 
