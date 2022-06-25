@@ -10,4 +10,5 @@ for currency in response_json['data']:
         {'code': currency['id'],
          'name': currency['name']}
     )
-print(codes)
+with open('codes.json', 'w') as f:
+    f.write(json.dumps(codes))

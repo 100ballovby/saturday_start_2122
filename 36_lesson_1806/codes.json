@@ -1,0 +1,266 @@
+[
+  {
+    "code": "AED",
+    "name": "United Arab Emirates Dirham"
+  },
+  {
+    "code": "AUD",
+    "name": "Australian Dollar"
+  },
+  {
+    "code": "BYN",
+    "name": "Belarusian Ruble"
+  },
+  {
+    "code": "CAD",
+    "name": "Canadian Dollar"
+  },
+  {
+    "code": "CDF",
+    "name": "Congolese Franc"
+  },
+  {
+    "code": "CHF",
+    "name": "Swiss Franc"
+  },
+  {
+    "code": "CNY",
+    "name": "Chinese Renminbi Yuan"
+  },
+  {
+    "code": "CZK",
+    "name": "Czech Koruna"
+  },
+  {
+    "code": "EUR",
+    "name": "Euro"
+  },
+  {
+    "code": "GBP",
+    "name": "British Pound"
+  },
+  {
+    "code": "JPY",
+    "name": "Japanese Yen"
+  },
+  {
+    "code": "PLN",
+    "name": "Polish Z\u0142oty"
+  },
+  {
+    "code": "PYG",
+    "name": "Paraguayan Guaran\u00ed"
+  },
+  {
+    "code": "QAR",
+    "name": "Qatari Riyal"
+  },
+  {
+    "code": "RON",
+    "name": "Romanian Leu"
+  },
+  {
+    "code": "RSD",
+    "name": "Serbian Dinar"
+  },
+  {
+    "code": "RUB",
+    "name": "Russian Ruble"
+  },
+  {
+    "code": "RWF",
+    "name": "Rwandan Franc"
+  },
+  {
+    "code": "SAR",
+    "name": "Saudi Riyal"
+  },
+  {
+    "code": "SBD",
+    "name": "Solomon Islands Dollar"
+  },
+  {
+    "code": "SCR",
+    "name": "Seychellois Rupee"
+  },
+  {
+    "code": "SEK",
+    "name": "Swedish Krona"
+  },
+  {
+    "code": "SGD",
+    "name": "Singapore Dollar"
+  },
+  {
+    "code": "SHP",
+    "name": "Saint Helenian Pound"
+  },
+  {
+    "code": "SLL",
+    "name": "Sierra Leonean Leone"
+  },
+  {
+    "code": "SOS",
+    "name": "Somali Shilling"
+  },
+  {
+    "code": "SRD",
+    "name": "Surinamese Dollar"
+  },
+  {
+    "code": "SSP",
+    "name": "South Sudanese Pound"
+  },
+  {
+    "code": "STD",
+    "name": "S\u00e3o Tom\u00e9 and Pr\u00edncipe Dobra"
+  },
+  {
+    "code": "SVC",
+    "name": "Salvadoran Col\u00f3n"
+  },
+  {
+    "code": "SZL",
+    "name": "Swazi Lilangeni"
+  },
+  {
+    "code": "THB",
+    "name": "Thai Baht"
+  },
+  {
+    "code": "TJS",
+    "name": "Tajikistani Somoni"
+  },
+  {
+    "code": "TMT",
+    "name": "Turkmenistani Manat"
+  },
+  {
+    "code": "TND",
+    "name": "Tunisian Dinar"
+  },
+  {
+    "code": "TOP",
+    "name": "Tongan Pa\u02bbanga"
+  },
+  {
+    "code": "TRY",
+    "name": "Turkish Lira"
+  },
+  {
+    "code": "TTD",
+    "name": "Trinidad and Tobago Dollar"
+  },
+  {
+    "code": "TWD",
+    "name": "New Taiwan Dollar"
+  },
+  {
+    "code": "TZS",
+    "name": "Tanzanian Shilling"
+  },
+  {
+    "code": "UAH",
+    "name": "Ukrainian Hryvnia"
+  },
+  {
+    "code": "UGX",
+    "name": "Ugandan Shilling"
+  },
+  {
+    "code": "USD",
+    "name": "US Dollar"
+  },
+  {
+    "code": "UYU",
+    "name": "Uruguayan Peso"
+  },
+  {
+    "code": "UZS",
+    "name": "Uzbekistan Som"
+  },
+  {
+    "code": "VEF",
+    "name": "Venezuelan Bol\u00edvar"
+  },
+  {
+    "code": "VES",
+    "name": "Venezuelan Bol\u00edvar Soberano"
+  },
+  {
+    "code": "VND",
+    "name": "Vietnamese \u0110\u1ed3ng"
+  },
+  {
+    "code": "VUV",
+    "name": "Vanuatu Vatu"
+  },
+  {
+    "code": "WST",
+    "name": "Samoan Tala"
+  },
+  {
+    "code": "XAF",
+    "name": "Central African Cfa Franc"
+  },
+  {
+    "code": "XAG",
+    "name": "Silver (Troy Ounce)"
+  },
+  {
+    "code": "XAU",
+    "name": "Gold (Troy Ounce)"
+  },
+  {
+    "code": "XBA",
+    "name": "European Composite Unit"
+  },
+  {
+    "code": "XCD",
+    "name": "East Caribbean Dollar"
+  },
+  {
+    "code": "XDR",
+    "name": "Special Drawing Rights"
+  },
+  {
+    "code": "XOF",
+    "name": "West African Cfa Franc"
+  },
+  {
+    "code": "XPD",
+    "name": "Palladium"
+  },
+  {
+    "code": "XPF",
+    "name": "Cfp Franc"
+  },
+  {
+    "code": "XPT",
+    "name": "Platinum"
+  },
+  {
+    "code": "XTS",
+    "name": "Codes specifically reserved for testing purposes"
+  },
+  {
+    "code": "YER",
+    "name": "Yemeni Rial"
+  },
+  {
+    "code": "ZAR",
+    "name": "South African Rand"
+  },
+  {
+    "code": "ZMW",
+    "name": "Zambian Kwacha"
+  },
+  {
+    "code": "ZWD",
+    "name": "Zimbabwean Dollar"
+  },
+  {
+    "code": "ZWL",
+    "name": "Zimbabwean Dollar"
+  }
+]
